@@ -4,7 +4,6 @@
  * @description :: Server-side logic for managing Auths
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var passport = require('passport');
 module.exports = {
 
 
@@ -13,35 +12,24 @@ module.exports = {
    * `AuthController.login()`
    */
   login: function (req, res) {
-    var username = req.param('username');
-    var password = req.param('password');
-    console.log("username is "+ username + "\n password is "+password);
-    return res.view();
+     res.view();
   },
 
-
-  /**
-   * `AuthController.process()`
-   */
-  process: function (req, res) {
-    console.log("2-------------");
-    passport.authenticate('local',function(err,user,info){
+  auth: function(req, res,next){
+    require('passport').authenticate('local', function (err,user,info) {
       if((err) || (!user)){
-        return res.send({
-          message:'login failed'
-        });
-        res.send(err);
+        next(err);
       }
-      req.logIn(user, function (err) {
+
+      req.login(user, function (err) {
         if(err){
-          res.send(err);
+          return res.redirect('/login');
         }
-        return res.send({
-          message:'login successful'
-        });
-      })
-    });
+        return res.redirect('/user/'+user.id);
+      });
+    })
   },
+
 
 
   /**
@@ -49,7 +37,7 @@ module.exports = {
    */
   logout: function (req, res) {
     req.logout();
-    res.send('logout successful');
+    return res.redirect('/login');
   }
 };
 

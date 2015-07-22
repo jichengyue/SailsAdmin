@@ -11,18 +11,26 @@
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<link href="/styles/style.css" rel="stylesheet">
-	</head>
+    <style>
+      #loginModal{ margin-top:10%;}
+      /* css注释：为了观察效果设置宽度 边框 高度等样式 */
+    </style>
+  </head>
 	<body>
+
+<div id="mapItem" style="float: left">
+  <div id="ChinaMap" style="margin: 50px;"></div>
+  <div id="stateTip" style="position: absolute;left: 100%;text-align: left;display: inline;"></div>
+</div>
 <!--login modal-->
 <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h1 class="text-center">甘肃省博物馆在线监测系统</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" method="post" action="/login">
+          <form class="form col-md-12 center-block" method="post" action="/auth">
             <div class="form-group">
               <input type="text" class="form-control input-lg" name="username" placeholder="用户名">
             </div>
@@ -37,14 +45,32 @@
       </div>
       <div class="modal-footer">
           <div class="col-md-12">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-		  </div>
+		      </div>
       </div>
   </div>
   </div>
 </div>
 	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.foggy.min.js"></script>
+    <script type="text/javascript" src="/js/raphael-min.js"></script>
+    <script type="text/javascript" src="/js/res/chinaMapConfig.js"></script>
+    <script type="text/javascript" src="/js/map-min.js"></script>
+
+  <script type="text/javascript">
+    //$(document).ready( function(){
+
+      $(function(){
+        $('#ChinaMap').SVGMap({
+          mapWidth: 1800,
+          mapHeight: 900
+        });
+      });
+
+      $('#mapItem').foggy();
+  //  });
+  </script>
 	</body>
 </html>
