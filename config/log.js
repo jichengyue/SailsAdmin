@@ -9,6 +9,25 @@
  * For more information on the Sails logger, check out:
  * http://sailsjs.org/#!/documentation/concepts/Logging
  */
+var winston = require('winston');
+
+var logger = new (winston.Logger)({
+
+  transports:[
+    new (winston.transports.Console)({}),
+    new (winston.transports.File)({
+      filename:'/tmp/logs/sails-admin.log',
+      level:'verbose',
+      json:true,
+      zippedArchive: true,
+      maxsize: 100000,
+      maxFiles: 3,
+      colorize:false
+    })
+  ]
+
+});
+
 
 module.exports.log = {
 
@@ -24,6 +43,7 @@ module.exports.log = {
   *                                                                          *
   ***************************************************************************/
 
-  // level: 'info'
-
+    level:'silly',
+    colorize: false,
+    custom:logger
 };
