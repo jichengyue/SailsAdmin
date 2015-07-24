@@ -21,7 +21,7 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  // middleware: {
+   middleware: {
 
   /***************************************************************************
   *                                                                          *
@@ -29,24 +29,27 @@ module.exports.http = {
   * router is invoked by the "router" middleware below.)                     *
   *                                                                          *
   ***************************************************************************/
+    passportInit    : require('passport').initialize(),
+    passportSession : require('passport').session(),
 
-    // order: [
-    //   'startRequestTimer',
-    //   'cookieParser',
-    //   'session',
-    //   'myRequestLogger',
-    //   'bodyParser',
-    //   'handleBodyParserError',
-    //   'compress',
-    //   'methodOverride',
-    //   'poweredBy',
-    //   '$custom',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    //   '404',
-    //   '500'
-    // ],
+     order: [
+       'startRequestTimer',
+       'cookieParser',
+       'session',
+       'passportInit',
+       'passportSession',
+       'myRequestLogger',
+       'bodyParser',
+       'handleBodyParserError',
+       'compress',
+       'methodOverride',
+       'poweredBy',
+       'router',
+       'www',
+       'favicon',
+       '404',
+       '500'
+     ],
 
   /****************************************************************************
   *                                                                           *
@@ -57,7 +60,7 @@ module.exports.http = {
     // myRequestLogger: function (req, res, next) {
     //     console.log("Requested :: ", req.method, req.url);
     //     return next();
-    // }
+     }
 
 
   /***************************************************************************

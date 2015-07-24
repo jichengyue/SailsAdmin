@@ -46,6 +46,9 @@ module.exports.routes = {
   '/auth':{
     controller:'AuthController',
     action:'auth'
+  },
+  'get /register': {
+    view: 'auth/register'
   }
 
   /***************************************************************************

@@ -4,9 +4,16 @@
  * @description :: Server-side logic for managing Auths
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+
+var passport = require('passport');
+
 module.exports = {
 
-
+  _config: {
+    actions: false,
+    shortcuts: false,
+    rest: false
+  },
 
   /**
    * `AuthController.login()`
@@ -15,19 +22,29 @@ module.exports = {
      res.view();
   },
 
-  auth: function(req, res,next){
-    require('passport').authenticate('local', function (err,user,info) {
+
+  auth: function(req, res){
+
+    passport.authenticate('local',function (err,user,info) {
+      sails.log.verbose("开始验证------------"+user);
       if((err) || (!user)){
-        next(err);
+
+        return res.send({
+          message:info.message,
+          user:user
+        });
       }
 
-      req.login(user, function (err) {
+      req.logIn(user, function (err) {
         if(err){
           return res.redirect('/login');
         }
-        return res.redirect('/user/'+user.id);
+        return res.send({
+          message:info.message,
+          user:user
+        });
       });
-    })
+    })(req,res);
   },
 
 
@@ -40,9 +57,3 @@ module.exports = {
     return res.redirect('/login');
   }
 };
-
-module.exports.blueprints = {
-  actions:true,
-  rest:true,
-  shortcuts:true
-}

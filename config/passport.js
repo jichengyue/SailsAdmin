@@ -6,47 +6,50 @@ var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy,
   bcrypt = require('bcrypt');
 
-passport.use(new LocalStrategy(function (username,password,done) {
-  process.nextTick(function () {
-    User.findOne().where({
-      or:[
-        {username:username},
-        {email:username}
-      ]
-    });
-  }).done(function (err,user) {
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
-    if (err) {
-      return done(null, err);
-    }
-
-    if (!user) {
-      return done(null, false, { message: 'Unknown user ' + username });
-    }
-
-    bcrypt.compare(password, user.password, function(err, res) {
-
-      if (!res)
-        return done(null, false, { message: 'Invalid Password'});
-
-      return done(null, user, { message: 'Logged In Successfully'} );
-    });
-
+passport.deserializeUser(function(id, done) {
+  User.findOne({ id: id } , function (err, user) {
+    done(err, user);
   });
-}));
+});
 
-module.exports = {
+passport.use(new LocalStrategy({
 
-  express:{
-    customMiddleware: function (app) {
-      console.log('Express middleware for passport ');
-      app.use(passport.initialize());
-      app.use(passport.session());
-      app.use(function (req,res,next) {
-        res.locals.loggedUser = req.user;
-        next();
-      });
+  usernameField: 'email',
+  passwordField: 'password'
+
+
+},function (email,password,done) {
+
+  sails.log.verbose("******"+email);
+  User.findOne({email:email}, function (err,user) {
+    if(err){
+      return done(err);
     }
-  }
 
-}
+    if(!user){
+      return done(null,false,{message:'incorrect email'});
+    }
+
+    bcrypt.compare(password,user.password, function (err,res) {
+      if(!res){
+        return done(null,false,{message:'Invalid password'});
+      }
+
+      var returnUser = {
+        email:user.email,
+        createAt:user.createAt,
+        id:user.id
+      };
+      return done(null, returnUser, {
+        message: 'Logged In Successfully'
+      });
+
+    })
+  });
+
+
+}));
