@@ -6,9 +6,24 @@ var _super = require('sails-permissions/config/passport');
 var passport = require('passport'),
   LocalStrategy = require('passport-local');
 
+passport.serializerUser(function (user,done) {
+  done(null,user.id)
+});
+
+passport.deserializerUser(function (user,done) {
+  User.findOne({id:id}, function (err,user) {
+    done(err,user);
+  });
+});
+
 // Extend with custom logic here by adding additional fields, methods, etc.
-passport.use(new LocalStrategy(function (username,password,done) {
+passport.use(new LocalStrategy({
+  usernameField:"username",
+  passwordField:"password"
+},function (username,password,done) {
+
   User.findOne({username:username}, function (err,user) {
+
     sails.log.debug("passport usering...");
     if(err){
       return done(err);

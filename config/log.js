@@ -16,7 +16,7 @@ var logger = new (winston.Logger)({
   transports:[
     new (winston.transports.Console)({}),
     new (winston.transports.File)({
-      filename:'/tmp/logs/sails-admin.log',
+      filename:'/tmp/sails-admin.log',
       level:'verbose',
       json:false,
       zippedArchive: true,

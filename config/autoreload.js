@@ -10,4 +10,4 @@ module.exports.autoreload = {
     "api/services",
     "views/auth/"
   ]
-}
+};

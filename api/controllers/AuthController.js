@@ -20,8 +20,7 @@ _.merge(exports, {
       { successRedirect:'/dash',
         failureRedirect:'/login',
         failureFlash:true
-
-    })
+    })(req,res);
   }
 
 });
