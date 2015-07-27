@@ -44,10 +44,6 @@ module.exports.routes = {
   },
   'get /signup':{
     view:'auth/signup'
-  },
-  '/auth':{
-    controller:'AuthController',
-    action:'auth'
   }
 
   /***************************************************************************

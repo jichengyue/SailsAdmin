@@ -17,7 +17,7 @@ var logger = new (winston.Logger)({
     new (winston.transports.Console)({}),
     new (winston.transports.File)({
       filename:'/tmp/sails-admin.log',
-      level:'verbose',
+      level:'silly',
       json:false,
       zippedArchive: true,
       maxsize: 100000000,
