@@ -40,6 +40,9 @@ module.exports.policies = {
 
   AuthController: {
     '*': [ 'passport' ]
+  },
+  ModelController:{
+    '*': [ 'passport' ]
   }
 
 

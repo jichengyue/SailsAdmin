@@ -32,13 +32,38 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
+  'get /': {
+    view:'auth/login'
   },
-  '/dash':{
-    view: 'dashboard/dash'
+  'get /dashboard':{
+    view: 'admin/dashboard'
   },
-  '/login':{
+  "/dashboard/data":{
+    controller:"ModelController",
+    action:'show_left_bar_data'
+  },
+  '/widgets':{
+    view: 'utils/widgets'
+  },
+  '/charts/flot':{
+    view: 'utils/charts/flot'
+  },
+  '/charts/inline':{
+    view: 'utils/charts/inline'
+  },
+  '/charts/morris':{
+    view: 'utils/charts/morris'
+  },
+  '/calendar':{
+    view: 'utils/calendar'
+  },
+  '/mailbox':{
+    view: 'utils/mailbox'
+  },
+  'get /login':{
+    view:'auth/login'
+  },
+  "post /login":{
     controller:'AuthController',
     action:'login'
   },
