@@ -43,6 +43,9 @@ module.exports.policies = {
   },
   ModelController:{
     '*': [ 'passport' ]
+  },
+  ReviewController:{
+    '*':true
   }
 
 

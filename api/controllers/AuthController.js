@@ -77,7 +77,7 @@ _.merge(exports, {
 
         sails.log.info('user', user, 'authenticated successfully');
 
-        return res.redirect('/dashboard/data');
+        return res.redirect('/dashboard');
       });
     });
   }
