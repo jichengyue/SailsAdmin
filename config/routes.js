@@ -38,6 +38,9 @@ module.exports.routes = {
   'get /dashboard':{
     view: 'admin/dashboard'
   },
+  "get /dashboard/review":{
+    view: 'admin/review_show'
+  },
   "/dashboard/data":{
     controller:"ModelController",
     action:'show_left_bar_data'
