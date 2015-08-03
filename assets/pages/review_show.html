@@ -1,23 +1,101 @@
 <!DOCTYPE html>
-<html  ng-app="SailsAdmin">
+<html ng-app="SailsAdmin">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-  <script type="text/javascript" src="/js/angular-1.4.min.js"></script>
-  <script type="text/javascript" src="/js/app.js"></script>
+  <meta charset="UTF-8">
+  <title>Review List</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+  <script src="../js/angular-1.4.min.js" type="text/javascript" ></script>
+
+  <script src="../js/app.js" type="text/javascript" ></script>
+
+  <!-- bootstrap 3.0.2 -->
+  <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!-- font Awesome -->
+  <link href="../styles/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <!-- Ionicons -->
+  <link href="../styles/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <!-- DATA TABLES -->
+  <link href="../styles/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="../styles/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+
+
 </head>
 <body >
-<h1>Hello Reviews</h1>
-<div>
-  <input type="text" ng-model="name" />
-  {{ name }}
-</div>
-<div ng-controller="ReviewController as reviewC">
-  <ul>
-    <li ng-repeat = "r in reviewC.reviews">
-      {{ r.title + "," + r.text + "," + r.category }}
-    </li>
-  </ul>
-</div>
+<!-- header logo: style can be found in header.less -->
+
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Review List</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive">
+          <table id="example2" class="table table-bordered table-hover" ng-controller="ReviewController as rc">
+            <thead>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat = "r in rc.reviews">
+              <td>{{ r.title }}</td>
+              <td>{{ r.text }}</td>
+              <td>{{ r.category }}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
+    </div>
+  </div>
+
+</section><!-- /.content -->
+
+
+
+<!--<script src="../js/jquery-1.11.3.min.js"></script>-->
+<!-- Bootstrap -->
+<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+<!-- DATA TABES SCRIPT -->
+<script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+
+
+
+
+<!-- page script -->
+
+<script type="text/javascript">
+  $(function() {
+    $('#example2').dataTable({
+      "bPaginate": true,
+      "bLengthChange": false,
+      "bFilter": false,
+      "bSort": true,
+      "bInfo": true,
+      "bAutoWidth": false
+    });
+  });
+</script>
+
+
 </body>
 </html>
