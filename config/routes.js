@@ -72,6 +72,14 @@ module.exports.routes = {
   },
   'get /signup':{
     view:'auth/signup'
+  },
+  "post /review/add":{
+    controller:'ReviewController',
+    action:'add'
+  },
+  "get /review/destroy/:id":{
+    controller:'ReviewController',
+    action:'destroy'
   }
 
   /***************************************************************************

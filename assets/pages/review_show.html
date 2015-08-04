@@ -5,12 +5,15 @@
   <title>Review List</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
+  <!-- Bootstrap -->
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/bower/angular/angular.min.js" type="text/javascript" ></script>
+  <script src="/bower/angular-paginate-anything/dist/paginate-anything-tpls.min.js"></script>
+  <script src="/js/app.js" type="text/javascript" ></script>
 
-  <script src="../js/angular-1.4.min.js" type="text/javascript" ></script>
+  <!-- DATA TABES SCRIPT -->
 
-
-
-  <script src="../js/app.js" type="text/javascript" ></script>
 
   <!-- bootstrap 3.0.2 -->
   <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -37,8 +40,9 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Review List</h3>
+          <h3 class="box-title">新闻列表</h3>
         </div><!-- /.box-header -->
+        <a href="review_edit.html" class="btn btn-primary" style="margin-left: 10px">创建新闻</a>
         <div class="box-body table-responsive" ng-app="SailsAdmin">
           <table id="example2" class="table table-bordered table-hover" ng-controller="ReviewController as rc">
             <thead>
@@ -46,17 +50,17 @@
               <th>新闻标题</th>
               <th>新闻快讯</th>
               <th>新闻类型</th>
-              <th colspan="2">操作</th>
+              <th colspan="2" style="text-align: center;">操作</th>
             </tr>
             </thead>
             <tbody>
 
             <tr ng-repeat = "r in rc.reviews">
-              <td width="15%">{{ r.title }}</td>
-              <td width="70%">{{ r.text }}</td>
+              <td width="15%" >{{ r.title }}</td>
+              <td width="60%" ><div ng-bind-html="r.text | to_trust_html "></div></td>
               <td>{{ r.category }}</td>
-              <td>编辑</td>
-              <td>删除</td>
+              <td style="text-align: center;"><a href="#"  ng-click="rc.create('review_edit.html')" class="btn btn-warning">编辑</a></td>
+              <td style="text-align: center;"><a href="/review/destroy/{{ r.id }}" class="btn btn-danger">删除</a></td>
             </tr>
             </tbody>
             <tfoot>
@@ -64,11 +68,15 @@
               <th>新闻标题</th>
               <th>新闻快讯</th>
               <th>新闻类型</th>
-              <th colspan="2">操作</th>
+              <th colspan="2" style="text-align: center;">操作</th>
             </tr>
             </tfoot>
           </table>
         </div><!-- /.box-body -->
+        <bgf-pagination
+          collection="rc"
+          >
+        </bgf-pagination>
       </div><!-- /.box -->
     </div>
   </div>
@@ -76,32 +84,6 @@
 </section><!-- /.content -->
 
 
-
-
-<!-- Bootstrap -->
-<script src="../js/bootstrap.min.js" type="text/javascript"></script>
-<!-- DATA TABES SCRIPT -->
-<script src="../js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="../js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-
-<script src="../js/jquery-2.1.4.min.js"></script>
-
-
-
-<!-- page script -->
-
-<script type="text/javascript">
-    $(function() {
-        $('#example2').dataTable({
-      "bPaginate": true,
-      "bLengthChange": false,
-      "bFilter": false,
-      "bSort": true,
-      "bInfo": true,
-      "bAutoWidth": false
-    });
-  });
-</script>
 
 
 </body>
