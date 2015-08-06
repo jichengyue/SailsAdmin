@@ -9,4 +9,4 @@ module.exports = function authenticated(req,res,next) {
   else{
     return res.redirect('/login');
   }
-}
+};

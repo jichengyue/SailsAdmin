@@ -80,6 +80,10 @@ module.exports.routes = {
   "get /review/destroy/:id":{
     controller:'ReviewController',
     action:'destroy'
+  },
+  "get /review/edit/:id":{
+    controller:'ReviewController',
+    action:'edit'
   }
 
   /***************************************************************************

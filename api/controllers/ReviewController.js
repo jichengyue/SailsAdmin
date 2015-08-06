@@ -26,8 +26,19 @@ module.exports = {
     var id = req.param("id");
     Review.findOne({id:id}, function (err, data) {
       var review = data;
+      var isEdit = true;
+      res.view('admin/review_edit',{review:review,isEdit:isEdit});
 
+    });
+  },
+  update: function (req,res) {
+    var id = req.param("id");
+    var title = req.param("title");
+    var category = req.param("category");
+    var text     = req.param("text");
 
+    Review.update({id:id},{title:title,category:category,text:text}, function (err,data) {
+      res.redirect("/pages/review_show.html");
     });
   }
 };

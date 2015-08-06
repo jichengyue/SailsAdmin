@@ -43,6 +43,7 @@
           <h3 class="box-title">新闻列表</h3>
         </div><!-- /.box-header -->
         <a href="review_edit.html" class="btn btn-primary" style="margin-left: 10px">创建新闻</a>
+        <a href="/logout" class="btn btn-primary" style="margin-left: 10px">注销</a>
         <div class="box-body table-responsive" ng-app="SailsAdmin">
           <table id="example2" class="table table-bordered table-hover" ng-controller="ReviewController as rc">
             <thead>
@@ -59,7 +60,7 @@
               <td width="15%" >{{ r.title }}</td>
               <td width="60%" ><div ng-bind-html="r.text | to_trust_html "></div></td>
               <td>{{ r.category }}</td>
-              <td style="text-align: center;"><a href="#"  ng-click="rc.create('review_edit.html')" class="btn btn-warning">编辑</a></td>
+              <td style="text-align: center;"><a href="/review/edit/{{ r.id }}"  class="btn btn-warning">编辑</a></td>
               <td style="text-align: center;"><a href="/review/destroy/{{ r.id }}" class="btn btn-danger">删除</a></td>
             </tr>
             </tbody>
