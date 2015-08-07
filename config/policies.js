@@ -40,10 +40,6 @@ module.exports.policies = {
 
   AuthController: {
     '*': [ 'passport' ]
-  },
-
-  ReviewController:{
-    '*' : [ 'authenticated' , 'passport' ]
   }
 
 
