@@ -1,0 +1,25 @@
+sails 里面的测试是采用mocha框架
+
+要在全局安装mocha框架
+
+npm install -g mocha
+
+参考网址
+http://www.sailsjs.org/documentation/concepts/testing
+
+所有的测试用例统一的写在test文件夹里面
+
+但测试用例实行命令:
+
+mocha test/bootstrap.test.js  test/具体js文件的路径
+
+例子:  mocha test/bootstrap.test.js test/unit/models/User.test.js
+
+如果要一次测试所有的测试用例:npm test  (在执行这条命令时要进行下面的配置)
+
+首先要在package.json 文件的scripts里面添加test属性
+
+如package.json文件中所示
+
+"test": "mocha test/bootstrap.test.js test/unit/**/*.test.js"
+

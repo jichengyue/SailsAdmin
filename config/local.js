@@ -3,6 +3,4 @@
  */
 
 
-module.exports.local = {
-
-}
+module.exports.local = {};
