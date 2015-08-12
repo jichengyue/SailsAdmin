@@ -3,6 +3,8 @@
 var _ = require('lodash');
 var _super = require('sails-permissions/api/models/SecurityLog');
 
+delete _super.attributes.request.primaryKey;
+
 _.merge(exports, _super);
 _.merge(exports, {
 
