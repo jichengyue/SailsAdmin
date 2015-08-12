@@ -11,6 +11,17 @@
 
 module.exports.models = {
 
+  autoCreatedBy:false,
+
+  attributes: {
+    id: {
+      type: 'integer',
+      primaryKey: true,
+      size: 64,
+      autoIncrement: true,
+      unique: true
+    }
+  },
   /***************************************************************************
   *                                                                          *
   * Your app's default connection. i.e. the name of one of your app's        *

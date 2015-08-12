@@ -1,1 +1,3 @@
---timeout 5s
+--recursive
+--colors
+--timeout 30000
