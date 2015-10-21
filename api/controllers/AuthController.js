@@ -76,8 +76,9 @@ _.merge(exports, {
         }
 
         sails.log.info('user', user, 'authenticated successfully');
-
-        return res.redirect('/dashboard');
+        var responseData = {result_code:20001,result_msg:"OK"};
+        return res.json(responseData);
+        //return res.redirect('/dashboard');
       });
     });
   }
