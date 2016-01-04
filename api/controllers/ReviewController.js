@@ -40,6 +40,9 @@ module.exports = {
     Review.update({id:id},{title:title,category:category,text:text}, function (err,data) {
       res.redirect("/pages/review_show.html");
     });
+  },
+  list: function(req,res){
+
   }
 };
 

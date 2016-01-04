@@ -49,7 +49,7 @@ _.merge(exports, {
       else {
         // make sure the server always returns a response to the client
         // i.e passport-local bad username/email or password
-        res.forbidden();
+        res.redirect('/login');
       }
 
     }
@@ -76,9 +76,9 @@ _.merge(exports, {
         }
 
         sails.log.info('user', user, 'authenticated successfully');
-        var responseData = {result_code:20001,result_msg:"OK"};
-        return res.json(responseData);
-        //return res.redirect('/dashboard');
+        //var responseData = {result_code:20001,result_msg:"OK"};
+        //return res.json(responseData);
+        return res.redirect('/dashboard');
       });
     });
   }
