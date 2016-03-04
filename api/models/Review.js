@@ -14,6 +14,10 @@ module.exports = {
     number:{
       type:'string',
       defaultsTo:uuid.v4()
+    },
+    money:{
+      type:'float',
+      size:100
     }
   }
 };
